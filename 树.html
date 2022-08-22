@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    // 树、二叉树
+    // 1.二叉树的定义:使用对象来定义二叉树，结构分为数据域、左侧子节点、右侧子节点
+    //   定义：定义候需将左右两侧子节点都预置为空
+    function TreeNode(val){
+        this.val = val;
+        this.left = this.right = null
+    }
+    // 二叉树创建：直接调用构造函数，传入数据域值
+    const rootnode = new TreeNode(1) 
+    console.log(rootnode)
+
+    //2. 二叉树的遍历
+
+    // 二叉树创建
+    const root ={
+        val:"A",
+        left:{
+            val:"B",
+            left:{
+                val:"D"
+            },
+            right:{
+                val:"E"
+            }
+        },
+        right:{
+            val:"C",
+            right:{
+                val:"F"
+            }
+        }
+    }
+    console.log(root)
+
+    // 先序遍历:所有遍历函数的入参都是树的根节点对象
+    function preorder(shu){
+        // 递归边界，树的根结点为空
+        if(!shu){
+            return
+        }
+        // 输出当前遍历的结点值
+        console.log('当前遍历的结点值是:'+ shu.val)
+        // 递归遍历
+        preorder(shu.left)
+        preorder(shu.right)
+    }   
+        // 执行先序遍历函数
+    preorder(root)
+
+    // 中序遍历
+    function midorder(shu){
+        // 递归边界，树的根结点为空
+        if(!shu){
+            return
+        }
+        midorder(shu.left)
+        // 输出当前遍历的结点值
+        console.log(shu.val)
+        midorder(shu.right)
+    }
+    midorder(root)
+
+    // 后续遍历
+    function postorder(shu){
+        if(!shu){
+            return
+        }
+        postorder(shu.left)
+        postorder(shu.right)
+        console.log(shu.val)
+
+    }
+    postorder(root)
+</script>
+</html>

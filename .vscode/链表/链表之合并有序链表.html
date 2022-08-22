@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 合并两个有序链表，并返回新的有序链表 -->
+    <!-- 主要思想：根据结点值域的关系，将链表中各结点的next指针指向合适的位置 -->
+    <script>
+        /* 准备两个链表l1、l2 */
+        // 链表结点定义
+        function ListNode(val){
+        this.val = val;
+        this.next = null;
+        }
+        //l1 l2简单链表实现
+        var l1 = new ListNode(1)
+        l1.next = new ListNode(3)
+        // 以下方式是不符合规则的，因为相当于重新new 了一个node(3)结点，导致与上一步连接不起来
+        // new ListNode(3).next = new ListNode(6)
+
+        var l2 = new ListNode(2)
+        l2.next = new ListNode(3)
+        console.log(l1)
+
+        /* 合并有序链表的函数 */
+        const mergeTwoLists = function(l1,l2){
+            // 定义头结点，确保链表被访问
+            let head = new ListNode()
+            // 定义连接的当前结点
+            let cur = head
+            // 从两个链表的第一个结点开始比较
+            while(l1&&l2){
+                // l1结点值较小
+                if(l1.val<=l2.val){
+                    // 则新链表的第一个结点为l1结点
+                    cur.next = l1
+                    // l1指针继续往前
+                    l1 = l1.next
+                }else{
+                    // l2结点较小
+                    cur.next = l2
+                    l2 = l2.next
+                }
+            // 新链表的结点也往前
+            cur = cur.next
+            }
+        //当两个链表长度不等
+        cur.next = l1!==null?l1:l2
+        // 返回起始节点
+        return head.next
+        }
+        // 合并函数执行
+        console.log(mergeTwoLists(l1,l2))
+    </script>
+</body>
+</html>

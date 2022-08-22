@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 给定数组，返回该数组所有的子集
+         基本思想：递归，不变的是坑位，坑位的个数+1为递归边界 -->
+    <script>
+       const subsets =function(nums){
+        const res = []
+        const len = nums.length
+        const subset = []
+        // 开始DFS
+        DFS(0)
+
+        // 定义dfs,入参为nums数字的索引
+        function DFS(index){
+            // 每次进入，意味着组合内容更新了一次，直接推入结果数组
+            res.push(subset.slice())
+            // 从当前数组索引开始，遍历nums
+            for(let i=index ; i<len; i++){
+                subset.push(nums[i])
+                DFS(i+1)
+                subset.pop()
+            }
+        }
+        return res
+       } 
+    </script>
+</body>
+</html>

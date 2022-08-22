@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 括号问题(对称性问题)
+    基本思路:同一元素的入栈顺序与出栈顺序是对称的
+    本题思路:左括号进栈的顺序与其对应的右括号进栈的顺序相反 -->
+    <script>
+        // 使用Map保存左括号与右括号的对应关系
+        const leftToRight = {
+            "(":")", 
+
+            
+            "{":"}",
+            "[":"]"
+        }
+
+        /* 检测函数 */
+        const isValid = function(s){
+            // 空字符串无条件判断为true
+            if(!s){
+                return true;
+            }
+
+            //初始化stack数组
+            const stack = [];
+            // 缓存字符串长度
+            const len = s.length;
+            // 字符串遍历
+            for( i =0;i<len;i++){
+                //单个字符缓存
+                const zf = s[i]
+                //判断是否为左括号，是则将左括号对应的右括号按顺序push入数组(可用includes方法也可直接写逻辑运算符)
+                if(zf === "("||zf === "{"||zf === "[") stack.push(leftToRight[zf])
+                // 若不是左括号，则必须是和栈顶的左括号相匹配的右括号
+                else{
+                    // 若栈不为空，且栈顶的左括号没有与当前字符匹配上，则判为无效
+                    if(!stack.length|| stack.pop()!==zf){
+                        return false
+                    }
+                }
+            }
+            return !stack.length
+        }
+    </script>
+</body>
+</html>

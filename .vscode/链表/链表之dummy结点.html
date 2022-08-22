@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 删除一个有序链表中重复值的结点 -->
+    <script>
+        /* l1链表实现 */
+            //链表结点定义
+        function ListNode(val){
+        this.val = val;
+        this.next = null;
+        }
+            //l1简单链表实现
+        let l1 = new ListNode(1)
+        l1.next = new ListNode(3)
+        l1.next.next = new ListNode(3)
+        l1.next.next.next = new ListNode(6)
+        console.log(l1)
+    
+        /*定义函数 */
+        const deleteDuplicate = function(list){
+            // 特殊情况，结点只有一个或没有，直接返回链表
+            if(! list|| !list.next){
+                return head
+            }
+
+            // 应用dummy(head)结点判断(个人理解为就是头结点，使用类方法构造链表与合并有序链表时已经使用)
+            let head = new ListNode()
+            head.next = list 
+            let cur = head
+            while(cur.next&&cur.next.next){
+                // 判断当前cur结点后面的两个结点值是否相等
+                if(cur.next.next.val === cur.next.val){
+                    // 若相等，则记下该值
+                    let val = cur.next.val
+                    // 反复排查是否有多次重复该值
+                    while(cur.next&&cur.next.val === val){
+                        // 有，则删除
+                        cur.next = cur.next.next
+                    }
+                }
+                // 若无相等，则正常遍历
+                else{
+                    cur = cur.next
+                }
+            }
+            return head.next
+        }
+        console.log(deleteDuplicate(l1))
+    </script>
+</body>
+</html>

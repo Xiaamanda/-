@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 判断一个链表中是否有环形链表 -->
+    <script>
+         // 链表结点定义
+        function ListNode(val){
+        this.val = val;
+        this.next = null;
+        }
+        /* 判断函数 */
+        const hasCycle = function(head){
+            // 结点存在，就继续遍历
+            while(head){
+                // 若存在flag，则必有环
+                if(head.flag){
+                    return true
+                }else{
+                    // flag未立，则立一个flag再往前
+                    head.flag = true
+                    head = head.next
+                }
+            }
+            // 没有flag,不存在环
+            return false;
+        }
+    </script>
+
+    <!-- 判断链表中有无环，若有环，则返回入环的起点结点
+         基本思想:跟找环类似，需要确定第一次返回flag的位置即为起点 -->
+    <script>
+        const detectCycle = function(head){
+            // 结点存在，就继续遍历
+            while(head){
+                // 若存在flag，则必有环,返回该结点
+                if(head.flag){
+                    return head
+                }else{
+                    // flag未立，则立一个flag再往前
+                    head.flag = true
+                    head = head.next
+                }
+            }
+            // 没有flag,不存在环
+            return null;
+        }
+    </script>
+</body>
+</html>

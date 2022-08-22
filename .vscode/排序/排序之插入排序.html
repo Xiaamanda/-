@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 插入排序：基于当前元素前面的有序元素序列，将当前元素按顺序插入到有序序列中 -->
+    <script>
+        function insertSort(arr){
+            const len = arr.length
+            // temp保存当前需要插入的元素
+            let temp
+            // i表示每次被插入元素索引
+            for(let i = 1 ;i<len;i++){
+                // j用于帮助temp寻找自己应该的定位
+                let j = i;
+                temp = arr[i]
+                // 判断j前面元素是否比temp大
+                while(j>0&&arr[j-1]>temp){
+                    // 如果是，则将j前面元素后移，为temp让位置
+                    arr[j]=arr[j-1]
+                    j--
+                }
+                // 循环让位，最后j为temp应有的索引
+                arr[j] = temp
+            }
+            return arr
+        }
+    </script>
+</body>
+</html>

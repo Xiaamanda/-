@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+     <script>
+        function mergeSort(arr){
+            const len = arr.length
+            // 边界处理
+            if(len <= 1){
+                return arr
+            }
+            
+            // 计算分割点
+            const mid = Math.floor(len/2)
+            // 递归分割左子数，然后合并为有序数组
+            const leftArr = mergeSort(arr.slice(0,mid))
+            // 递归分割右子树，然后合并为有序数组
+            const rightArr = mergeSort(arr.slice(mid,len))
+            // 合并左右两个有序数组
+            arr = mergeArr(leftArr,rightArr)
+            // 返回合并后的结果
+            return arr
+        }
+
+        // 合并两个有序数组
+        function mergeArr(arr1,arr2){
+            // 初始化两个指针
+            let i = 0,j =0
+            // 初始化结果数组
+            const res = []
+            // 缓存数组1、2的长度
+            const len1 = arr1.length
+            const len2 = arr2.length
+            // 合并两个字数组
+            while(i<len1&&j<len2){
+                if(arr[i]<arr[j]){
+                    res.push(arr1[i])
+                    i++
+                }else{
+                    res.push(arr2[j])
+                    j++
+                }
+            }
+            // 若其中一个被完全合并
+            if(i<len1){
+                return res.contact(arr1.slice(i))
+            }else{
+                return res.contact(arr2.slice(j))
+            }
+        }
+
+     </script>
+</body>
+</html>

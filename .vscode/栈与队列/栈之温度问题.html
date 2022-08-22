@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--自己的做法：用队列（存在漏洞，不可行XX)  -->
+    <script>
+        var dailyTemperatures = function (temperatures) {
+            var len = temperatures.length
+            // 将temperatures复制两份
+            // let queueA = temperatures
+            let queueB = temperatures
+            let queueResult = []
+            let i = 0;
+            let j = 0;
+            // 遍历两个队列
+            while (queueB) {
+                if (temperatures[0] < queueB[0]) {
+                    temperatures.shift()
+                    queueB.shift()
+                    queueResult.push(`j-i`)
+                    i++;
+                    j++;
+                } else {
+                    queueB.shift()
+                    j++;
+                }
+                return queueResult
+            }
+            
+        }
+    </script>
+    <!-- 温度问题
+        基本思想：for循环遍历温度数组，遍历过程中用栈来存储数每个温度值对应的索引，使用while循环来判断当前温度是否比前面温度高（栈的出栈顺序与入栈顺序相反，因此可以从后往前依次比较） -->
+    <script>
+        const dailyTemperatures = function(temperatures){
+            // 缓存数组长度
+            const len = temperatures.length;
+            // 初始化一个栈
+            const stack = [];
+            // 初始化结果数组，定长，0站位符
+            const res=(new Array(len)).fill(0)
+            for (let i = 0; i < len; i++){
+                    // 若栈不为空，且存在打破递减趋势的温度值（这一层用来判断当前温度值是否比之前的温度值高）
+                    while (stack.length&&temperatures[i]>temperatures[stack[stack.length - 1]]) {
+                        // 将栈顶温度值与对应的索引引出栈
+                        const top = stack.pop()
+                        // 计算当前温度值与第一个高于该温度值的索引差值
+                        res[top] = i - top
+                    }
+                    stack.push(i)
+                }
+                return res
+            }
+        
+    </script>
+
+</body>
+
+</html>

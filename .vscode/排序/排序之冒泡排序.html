@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 基础版冒排 -->
+    <script>
+        function bubbleSort(arr){
+            const len = arr.length
+            // 外层循环控制扫描多少轮，内层循环控制每轮扫描中数组的比较
+            for(let i = 0; i<len-1;i++){
+                for(let j = 0 ; j < len-i-1; j++){
+                    if(arr[j]>arr[j+1]){
+                        [arr[j],arr[j+1]] = [arr[j+1],arr[j]]
+                    }
+                }
+            }
+            //返回数组
+            return arr
+        }
+    </script>
+    <!-- 改进版冒排，可将最好情况下的时间复杂度优化为O（n） -->
+    <script>
+        function betterBubbleSort(arr){
+            const len = arr.length
+            for(let i = 0; i < len; i++){
+                // 增加标志位
+                let flag = false
+                for(let j = 0; j <len-1-i;j++){
+                    if(arr[j]>arr[j+1]){
+                        [arr[j],arr[j+1]]=arr[arr[j+1],arr[j]]
+                        // 只要发生了交换，就修改标志
+                        flag = true
+                    }
+                }
+                // 一次交换也未发生，说明数组有序，直接略过
+                if(flag == false) return arr;
+            }
+            return arr
+        }
+    </script>
+</body>
+</html>

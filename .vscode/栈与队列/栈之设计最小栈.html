@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--最小栈的构造
+        基本思想：使用常规方法遍历栈找最小值时间复杂度为n
+                使用stack2辅助栈构建当前最小元素的递减栈，辅助栈栈顶元素即为最小  -->
+    <script>
+        //最小栈构造函数定义
+         const MinStack = function (){
+            this.stack = [];
+            // 定义辅助栈
+            this. stack2 = [];
+         }
+
+        //  入栈
+         MinStack.prototype.push = function(x){
+            this.stack.push(x);
+            //若入栈元素小于当前最小值，则推入辅助栈栈顶
+            if(this.stack2.length == 0||this.stack2[this.stack2.length - 1] >= x){
+                this.stack2.push(x)
+            }
+         }
+
+        // 出栈
+        MinStack.prototype.pop = function(){
+            // 若出栈的值和当前最小值相等，那么辅助栈也要对栈顶元素出栈，确保最小值的有效性
+            if(this.stack.pop() === this.stack2[this.stack.length-1]){
+                this.stack2.pop()
+            }
+        }
+
+        // 求栈顶元素
+        MinStack.prototype.top = function(){
+            return this.stack[stack.length - 1]
+        }
+
+        // 求最小值
+        MinStack.prototype.getMin = function(){
+            //辅助栈的栈顶，存的就是目标最小值
+            return this.stack2[this.stack2.length - 1]
+        }
+
+    </script>
+</body>
+</html>
